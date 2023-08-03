@@ -1,4 +1,6 @@
-class CPF(object):
+from validate_docbr import CPF
+
+class DocCpf:
     def __init__(self, cpf) -> None:
         cpf = str(cpf)
         if self.valida_cpf(cpf):
@@ -10,13 +12,9 @@ class CPF(object):
         return self.formata_cpf()
 
     def valida_cpf(self, cpf) -> bool:
-        if len(cpf) == 11:
-            return True
-        else:
-            return False
-        
+        valida_cpf = CPF()
+        return valida_cpf.validate(cpf)
+  
     def formata_cpf(self) -> str:
-        cpf_formatado = "{}.{}.{}.{}".format(
-            self.cpf[:3], self.cpf[3:6], self.cpf[6:9], self.cpf[9:]
-        )
-        return cpf_formatado
+        mascara_cpf = CPF()
+        return mascara_cpf.mask(self.cpf)
